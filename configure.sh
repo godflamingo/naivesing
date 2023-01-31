@@ -1,5 +1,6 @@
 chmod +x /singo/singo
-mkdir -p /etc/singo /usr/local/etc/sing-box
+mkdir /etc/singo
+mkdir /usr/local/etc/sing-box
 cat << EOF > /etc/singo/config.json
 {
   "log": {
