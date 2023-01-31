@@ -31,7 +31,7 @@ cat << EOF > /etc/singo/config.json
           "domain": ["naivesing-production.up.railway.app"],
           "data_directory": "/usr/local/etc/sing-box",
           "default_server_name": "",
-          "email": "imlala@example.com",
+          "email": "imlala@gmail.com",
           "provider": "letsencrypt"
         }
       }
