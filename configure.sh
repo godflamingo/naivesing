@@ -1,31 +1,39 @@
-unzip /usfig/usfig.zip -d /usfig
-unzip /mycollect/mycollect.zip  -d /mycollect
-rm -rf /usfig/usfig.zip
-rm -rf /mycollect/mycollect.zip
-chmod +x /usfig/sing-box
-mkdir /etc/sing-box
-cat << EOF > /etc/sing-box/config.json
+chmod +x /singo/singo
+mkdir /etc/singo
+mkdir /usr/local/etc/sing-box
+cat << EOF > /etc/singo/config.json
 {
+  "log": {
+    "level": "info"
+  },
   "inbounds": [
     {
-      "type": "vmess",
-      "tag": "vmess-in",
+      "type": "naive",
+      "tag": "naive-in",
+      "network": "tcp",
       "listen": "127.0.0.1",
-      "listen_port": 23323,
+      "listen_port": 52004,
       "tcp_fast_open": true,
       "sniff": true,
       "sniff_override_destination": false,
+      "proxy_protocol": true,
+      "proxy_protocol_accept_no_header": false,
       "users": [
         {
-          "name": "imlala",
-          "uuid": "54f87cfd-6c03-45ef-bb3d-9fdacec80a9a",
-          "alterId": 0
+          "username": "imlala",
+          "password": "password"
         }
       ],
-      "tls": {},
-      "transport": {
-        "type": "ws",
-        "path": "/app"
+      "tls": {
+        "enabled": true,
+        "server_name": "naive.example.com",
+        "acme": {
+          "domain": ["naive.example.com"],
+          "data_directory": "/usr/local/etc/sing-box",
+          "default_server_name": "",
+          "email": "imlala@example.com",
+          "provider": "letsencrypt"
+        }
       }
     }
   ],
@@ -37,13 +45,6 @@ cat << EOF > /etc/sing-box/config.json
   ]
 }
 EOF
-chmod +x /etc/sing-box/config.json
-echo /mycollect/index.html
-cat /mycollect/index.html
-rm -rf /etc/nginx/sites-enabled/default
+chmod +x /etc/singo/config.json
 # Let's get start
-/usfig/sing-box run -c /etc/sing-box/config.json &
-echo /mycollect/index.html
-cat /mycollect/index.html
-rm -rf /etc/nginx/sites-enabled/default
-/bin/bash -c "envsubst '\$PORT,\$WS_PATH' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+/singo/singo run -c /etc/singo/config.json
