@@ -26,9 +26,9 @@ cat << EOF > /etc/singo/config.json
       ],
       "tls": {
         "enabled": true,
-        "server_name": "naivesing-production.up.railway.app",
+        "server_name": "testnaive.lanod.tk",
         "acme": {
-          "domain": ["naivesing-production.up.railway.app"],
+          "domain": ["testnaive.lanod.tk"],
           "data_directory": "/usr/local/etc/sing-box",
           "default_server_name": "",
           "email": "imlala@gmail.com",
