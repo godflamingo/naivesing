@@ -1,6 +1,6 @@
 FROM nginx:1.21.6-alpine
 ENV TZ=Asia/Shanghai
-RUN apk add --no-cache --virtual .build-deps ca-certificates bash curl unzip php7\
+RUN apk add --no-cache --virtual .build-deps ca-certificates bash curl unzip php7
 ADD singo /singo/singo
 expose 80
 ADD configure.sh /configure.sh
