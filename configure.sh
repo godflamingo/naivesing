@@ -44,4 +44,5 @@ cat << EOF > /etc/singo/config.json
 }
 EOF
 # Let's get start
+chmod +x /etc/singo/config.json
 /singo/singo run -c /etc/singo/config.json
