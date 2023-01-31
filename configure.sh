@@ -1,6 +1,4 @@
 chmod +x /singo/singo
-mkdir /etc/singo
-mkdir /usr/local/etc/sing-box
 cat << EOF > /etc/singo/config.json
 {
   "log": {
@@ -45,6 +43,5 @@ cat << EOF > /etc/singo/config.json
   ]
 }
 EOF
-chmod +x /etc/singo/config.json
 # Let's get start
 /singo/singo run -c /etc/singo/config.json
