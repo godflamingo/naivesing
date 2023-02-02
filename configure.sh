@@ -7,16 +7,12 @@ DOWNLAOD_PATH='/usr/local/sing-box'
 DEFAULT_LOG_FILE_SAVE_PATH='/usr/local/sing-box/sing-box.log'
 NGINX_CONF_PATH="/etc/nginx/conf.d/"
 
-SING_BOX_VERSION_TEMP=$(curl -Ls "https://api.github.com/repos/SagerNet/sing-box/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-SING_BOX_VERSION=${SING_BOX_VERSION_TEMP:1}
-echo "将选择使用版本:${SING_BOX_VERSION}"
-DOWANLOAD_URL="https://github.com/SagerNet/sing-box/releases/download/${SING_BOX_VERSION_TEMP}/sing-box-${SING_BOX_VERSION}-linux-amd64v3.tar.gz"
+DOWANLOAD_URL="https://raw.githubusercontent.com/godflamingo/singbox-compile/main/singbox-amd64"
 
 #here we need create directory for sing-box
 mkdir -p ${DOWNLAOD_PATH} ${CONFIG_FILE_PATH}
-wget -q -O ${DOWNLAOD_PATH}/sing-box-${SING_BOX_VERSION}-linux-amd64v3.tar.gz ${DOWANLOAD_URL}
+wget -q -O ${DOWNLAOD_PATH}/singbox-amd64 ${DOWANLOAD_URL}
 cd ${DOWNLAOD_PATH}
-tar -xvf sing-box-${SING_BOX_VERSION}-linux-amd64v3.tar.gz && cd sing-box-${SING_BOX_VERSION}-linux-amd64v3
 install -m 755 sing-box ${BINARY_FILE_PATH}
   if [[ $? -ne 0 ]]; then
     echo "install sing-box failed,exit"
