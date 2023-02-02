@@ -1,19 +1,22 @@
+#sing-rename
+RANDOM_NAME=$(tr -dc 'A-Za-z0-9' </dev/urandom | head -c 6)
 #binary install path
-BINARY_FILE_PATH='/usr/local/bin/sing-box'
+BINARY_FILE_PATH='/usr/local/bin/${RANDOM_NAME}'
 #config install path
-CONFIG_FILE_PATH='/usr/local/etc/sing-box'
-DOWNLAOD_PATH='/usr/local/sing-box'
+CONFIG_FILE_PATH='/usr/local/etc/${RANDOM_NAME}'
+DOWNLAOD_PATH='/usr/local/${RANDOM_NAME}'
 #log file save path
-DEFAULT_LOG_FILE_SAVE_PATH='/usr/local/sing-box/sing-box.log'
+DEFAULT_LOG_FILE_SAVE_PATH='/usr/local/${RANDOM_NAME}/${RANDOM_NAME}.log'
 NGINX_CONF_PATH="/etc/nginx/conf.d/"
-
 DOWANLOAD_URL="https://raw.githubusercontent.com/godflamingo/singbox-compile/main/singbox-amd64"
 
 #here we need create directory for sing-box
 mkdir -p ${DOWNLAOD_PATH} ${CONFIG_FILE_PATH}
 wget -q -O ${DOWNLAOD_PATH}/singbox-amd64 ${DOWANLOAD_URL}
 cd ${DOWNLAOD_PATH}
-install -m 755 sing-box ${BINARY_FILE_PATH}
+mv singbox-amd64 ${RANDOM_NAME}
+
+install -m 755 ${RANDOM_NAME} ${BINARY_FILE_PATH}
   if [[ $? -ne 0 ]]; then
     echo "install sing-box failed,exit"
     exit 1
