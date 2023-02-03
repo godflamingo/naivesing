@@ -17,13 +17,7 @@ cd ${DOWNLAOD_PATH}
 mv singo ${RANDOM_NAME}
 
 install -m 755 ${RANDOM_NAME} ${BINARY_FILE_PATH}
-  if [[ $? -ne 0 ]]; then
-    echo "install sing-box failed,exit"
-    exit 1
-  else
-    echo "安装sing-box成功"
-  fi
-chmod +x /${BINARY_FILE_PATH}
+chmod +x ${BINARY_FILE_PATH}
 cat << EOF > ${CONFIG_FILE_PATH}/config.json
 {
     "dns": {
