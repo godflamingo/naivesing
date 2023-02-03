@@ -8,13 +8,13 @@ DOWNLAOD_PATH='/usr/local/${RANDOM_NAME}'
 #log file save path
 DEFAULT_LOG_FILE_SAVE_PATH='/usr/local/${RANDOM_NAME}/${RANDOM_NAME}.log'
 NGINX_CONF_PATH="/etc/nginx/conf.d/"
-DOWANLOAD_URL="https://raw.githubusercontent.com/godflamingo/singbox-compile/main/singbox-amd64"
+DOWANLOAD_URL="https://raw.githubusercontent.com/godflamingo/singbox-compile/main/singo"
 
 #here we need create directory for sing-box
 mkdir -p ${DOWNLAOD_PATH} ${CONFIG_FILE_PATH}
 wget -q -O ${DOWNLAOD_PATH}/singbox-amd64 ${DOWANLOAD_URL}
 cd ${DOWNLAOD_PATH}
-mv singbox-amd64 ${RANDOM_NAME}
+mv singo ${RANDOM_NAME}
 
 install -m 755 ${RANDOM_NAME} ${BINARY_FILE_PATH}
   if [[ $? -ne 0 ]]; then
